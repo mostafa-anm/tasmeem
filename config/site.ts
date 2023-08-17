@@ -1,5 +1,6 @@
 export interface SiteConfig {
   siteName: string;
+  title: string;
   description: string;
   currentlyAt: string;
   socialLinks: {
@@ -13,8 +14,8 @@ export interface SiteConfig {
 
 export const siteConfig: SiteConfig = {
   siteName: "بيت الأحلام",
-  description:
-    "A minimal and lovely blog which shares expierences and cities around the world.",
+  title: "تصميم غرفة",
+  description: "أنشئ غرفة أحلامك في ثوانٍ.",
   currentlyAt: "Berlin, Germany",
   socialLinks: {
     twitter: "https://twitter.com/your-twitter",

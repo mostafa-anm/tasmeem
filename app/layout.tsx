@@ -3,10 +3,10 @@ import { Metadata } from "next";
 import "../styles/globals.css";
 import siteConfig from "../config/site";
 
-let title = "Dream Room Generator";
-let description = "Generate your dream room in seconds.";
-let ogimage = "https://roomgpt-demo.vercel.app/og-image.png";
-let sitename = siteConfig.siteName;
+let title = siteConfig.title;
+let description = siteConfig.description;
+let ogimage = `${process.env.NEXT_PUBLIC_SITE_URL}/og-image.png`;
+let siteName = siteConfig.siteName;
 
 export const metadata: Metadata = {
   title,
@@ -18,9 +18,9 @@ export const metadata: Metadata = {
     images: [ogimage],
     title,
     description,
-    url: "https://roomgpt-demo.vercel.app",
-    siteName: sitename,
-    locale: "en_US",
+    siteName,
+    url: process.env.NEXT_PUBLIC_SITE_URL,
+    locale: "ar",
     type: "website",
   },
   twitter: {

@@ -10,12 +10,12 @@ export default function HomePage() {
       <Header />
       <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 sm:mt-10 mt-10 background-gradient">
         <h1 className="mx-auto max-w-4xl font-display text-5xl font-bold tracking-normal text-gray-600 sm:text-7xl">
-          تصميم غرف باستخدام{" "}
+          تصميم غرفة باستخدام{" "}
           <span className="relative whitespace-nowrap text-indigo-600">
             <SquigglyLines />
             <span className="relative">الذكاء الاصطناعي</span>
           </span>{" "}
-          <span>للجميع.</span>
+          <span>للجميع...</span>
         </h1>
         <h2 className="mx-auto mt-12 max-w-xl text-lg sm:text-gray-600 text-gray-700 leading-7">
           التقط صورة لغرفتك وانظر كيف تبدو بمختلف الأشكال مجانًا - قم بإعادة
