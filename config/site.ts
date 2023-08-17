@@ -11,7 +11,7 @@ export interface SiteConfig {
   };
 }
 
-const siteConfig: SiteConfig = {
+export const siteConfig: SiteConfig = {
   siteName: "بيت الأحلام",
   description:
     "A minimal and lovely blog which shares expierences and cities around the world.",

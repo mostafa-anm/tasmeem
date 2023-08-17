@@ -15,6 +15,7 @@ import appendNewToName from "../../utils/appendNewToName";
 import downloadPhoto from "../../utils/downloadPhoto";
 import DropDown from "../../components/DropDown";
 import { roomType, rooms, themeType, themes } from "../../utils/dropdownTypes";
+import uploaderConfig from "../../config/uploader";
 
 // Configuration for the uploader
 const uploader = Uploader({
@@ -43,38 +44,7 @@ const options = {
     },
   },
   locale: {
-    "error!": "Error!",
-    "done": "Done",
-    "addAnotherFile": "Add another file...",
-    "addAnotherImage": "Add another image...",
-    "cancel": "cancel",
-    "cancelInPreviewWindow": "Cancel",
-    "cancelled!": "cancelled",
-    "continue": "Continue",
-    "customValidationFailed": "Failed to validate file.",
-    "crop": "Crop",
-    "finish": "Finished",
-    "finishIcon": true,
-    "image": "Image",
-    "maxFilesReached": "Maximum number of files:",
-    "maxImagesReached": "Maximum number of images:",
-    "maxSize": "File size limit:",
-    "next": "Next",
-    "of": "of",
-    "orDragDropFile": "...or drag and drop a file.",
-    "orDragDropFiles": "...or drag and drop files.",
-    "orDragDropImage": "...or drag and drop an image.",
-    "orDragDropImages": "...or drag and drop images.",
-    "pleaseWait": "Please wait...",
-    "removed!": "removed",
-    "remove": "remove",
-    "skip": "Skip",
-    "unsupportedFileType": "File type not supported.",
-    "uploadFile": "اختر ملف",
-    "uploadFiles": "اختر ملف",
-    "uploadImage": "اختر صورة",
-    "uploadImages": "اختر صورة",
-    "processingFile": "جاري معالجة الملف..."
+    ...uploaderConfig.locale,
   }
 };
 
