@@ -2,15 +2,13 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { UploadDropzone } from "react-uploader";
 import { Uploader } from "uploader";
-import { CompareSlider } from "../../components/CompareSlider";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import LoadingDots from "../../components/LoadingDots";
 import ResizablePanel from "../../components/ResizablePanel";
-import Toggle from "../../components/Toggle";
 import appendNewToName from "../../utils/appendNewToName";
 import downloadPhoto from "../../utils/downloadPhoto";
 import DropDown from "../../components/DropDown";
@@ -45,7 +43,7 @@ const options = {
   },
   locale: {
     ...uploaderConfig.locale,
-  }
+  },
 };
 
 export default function DreamPage() {
@@ -53,7 +51,6 @@ export default function DreamPage() {
   const [restoredImage, setRestoredImage] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [restoredLoaded, setRestoredLoaded] = useState<boolean>(false);
-  const [sideBySide, setSideBySide] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [photoName, setPhotoName] = useState<string | null>(null);
   const [theme, setTheme] = useState<themeType>("Modern");
@@ -147,70 +144,10 @@ export default function DreamPage() {
                   </div>
                 </>
               )}
-              {restoredImage && (
-                <div>
-                  Here's your remodeled <b>{room.toLowerCase()}</b> in the{" "}
-                  <b>{theme.toLowerCase()}</b> theme!{" "}
-                </div>
-              )}
-              <div
-                className={`${
-                  restoredLoaded ? "visible mt-6 -ml-8" : "invisible"
-                }`}
-              >
-                <Toggle
-                  className={`${restoredLoaded ? "visible mb-6" : "invisible"}`}
-                  sideBySide={sideBySide}
-                  setSideBySide={(newVal) => setSideBySide(newVal)}
-                />
-              </div>
-              {restoredLoaded && sideBySide && (
-                <CompareSlider
-                  original={originalPhoto!}
-                  restored={restoredImage!}
-                />
-              )}
-              {!originalPhoto && <UploadDropZone />}
-              {originalPhoto && !restoredImage && (
-                <Image
-                  alt="original photo"
-                  src={originalPhoto}
-                  className="rounded-2xl h-96"
-                  width={475}
-                  height={475}
-                />
-              )}
-              {restoredImage && originalPhoto && !sideBySide && (
-                <div className="flex sm:space-x-4 sm:flex-row flex-col">
-                  <div>
-                    <h2 className="mb-1 font-medium text-lg">Original Room</h2>
-                    <Image
-                      alt="original photo"
-                      src={originalPhoto}
-                      className="rounded-2xl relative w-full h-96"
-                      width={475}
-                      height={475}
-                    />
-                  </div>
-                  <div className="sm:mt-0 mt-8">
-                    <h2 className="mb-1 font-medium text-lg">Generated Room</h2>
-                    <a href={restoredImage} target="_blank" rel="noreferrer">
-                      <Image
-                        alt="restored photo"
-                        src={restoredImage}
-                        className="rounded-2xl relative sm:mt-0 mt-2 cursor-zoom-in w-full h-96"
-                        width={475}
-                        height={475}
-                        onLoadingComplete={() => setRestoredLoaded(true)}
-                      />
-                    </a>
-                  </div>
-                </div>
-              )}
               {loading && (
                 <button
                   disabled
-                  className="bg-blue-500 rounded-full text-white font-medium px-4 pt-2 pb-3 mt-8 w-40"
+                  className="bg-indigo-500 rounded-full text-white font-medium px-4 pt-2 pb-3 my-8 w-40"
                 >
                   <span className="pt-4">
                     <LoadingDots color="white" style="large" />
@@ -225,7 +162,46 @@ export default function DreamPage() {
                   <span className="block sm:inline">{error}</span>
                 </div>
               )}
-              <div className="flex space-x-2 justify-center">
+              {!originalPhoto && <UploadDropZone />}
+              {originalPhoto && !restoredImage && (
+                <Image
+                  alt="original photo"
+                  src={originalPhoto}
+                  className="rounded-2xl h-96"
+                  width={475}
+                  height={475}
+                />
+              )}
+              {restoredImage && originalPhoto && (
+                <div className="flex sm:space-x-4 sm:flex-row flex-col gap-4">
+                  <div>
+                    <h2 className="mb-1 font-medium text-lg">
+                      الغرفة التي تم أنشاؤها
+                    </h2>
+                    <a href={restoredImage} target="_blank" rel="noreferrer">
+                      <Image
+                        alt="restored photo"
+                        src={restoredImage}
+                        className="rounded-2xl relative sm:mt-0 mt-2 cursor-zoom-in w-full h-96"
+                        width={475}
+                        height={475}
+                        onLoadingComplete={() => setRestoredLoaded(true)}
+                      />
+                    </a>
+                  </div>
+                  <div className="sm:mt-0 mt-8">
+                    <h2 className="mb-1 font-medium text-lg">الغرفة الأصلية</h2>
+                    <Image
+                      alt="original photo"
+                      src={originalPhoto}
+                      className="rounded-2xl relative w-full h-96"
+                      width={475}
+                      height={475}
+                    />
+                  </div>
+                </div>
+              )}
+              <div className="flex space-x-2 justify-center gap-4">
                 {originalPhoto && !loading && (
                   <button
                     onClick={() => {
@@ -234,9 +210,9 @@ export default function DreamPage() {
                       setRestoredLoaded(false);
                       setError(null);
                     }}
-                    className="bg-blue-500 rounded-full text-white font-medium px-4 py-2 mt-8 hover:bg-blue-500/80 transition"
+                    className="bg-indigo-500 rounded-full text-white font-medium px-4 py-2 mt-8 hover:bg-indigo-500/80 transition"
                   >
-                    Generate New Room
+                    أنشئ غرفة أخرى
                   </button>
                 )}
                 {restoredLoaded && (
@@ -249,7 +225,7 @@ export default function DreamPage() {
                     }}
                     className="bg-white rounded-full text-black border font-medium px-4 py-2 mt-8 hover:bg-gray-100 transition"
                   >
-                    Download Generated Room
+                    تحميل
                   </button>
                 )}
               </div>
