@@ -3,6 +3,9 @@ import redis from "../../utils/redis";
 import { NextResponse } from "next/server";
 import { headers } from "next/headers";
 
+// Set the runtime to have longer timeouts
+export const runtime = 'edge';
+
 // Create a new ratelimiter, that allows 5 requests per 24 hours
 const ratelimit = redis
   ? new Ratelimit({
