@@ -2,7 +2,6 @@ export interface SiteConfig {
   siteName: string;
   title: string;
   description: string;
-  currentlyAt: string;
   socialLinks: {
     twitter: string;
     youtube: string;
@@ -14,9 +13,8 @@ export interface SiteConfig {
 
 export const siteConfig: SiteConfig = {
   siteName: "بيت الأحلام",
-  title: "تصميم غرفة",
+  title: "تصميم غرفة باستخدام الذكاء الاصطناعي",
   description: "أنشئ غرفة أحلامك في ثوانٍ.",
-  currentlyAt: "Berlin, Germany",
   socialLinks: {
     twitter: "https://twitter.com/your-twitter",
     youtube: "https://youtube.com/your-youtube",
