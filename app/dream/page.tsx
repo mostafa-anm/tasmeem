@@ -12,7 +12,7 @@ import ResizablePanel from "../../components/ResizablePanel";
 import appendNewToName from "../../utils/appendNewToName";
 import downloadPhoto from "../../utils/downloadPhoto";
 import DropDown from "../../components/DropDown";
-import { roomType, rooms, themeType, themes } from "../../utils/dropdownTypes";
+import { roomType, rooms, themeType, themes, translateRoom, translateTheme } from "../../utils/dropdownTypes";
 import uploaderConfig from "../../config/uploader";
 
 // Configuration for the uploader
@@ -53,8 +53,8 @@ export default function DreamPage() {
   const [restoredLoaded, setRestoredLoaded] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [photoName, setPhotoName] = useState<string | null>(null);
-  const [theme, setTheme] = useState<themeType>("Modern");
-  const [room, setRoom] = useState<roomType>("Living Room");
+  const [theme, setTheme] = useState<themeType>("حديثة");
+  const [room, setRoom] = useState<roomType>("غرفة المعيشة");
 
   const UploadDropZone = () => (
     <UploadDropzone
@@ -75,12 +75,18 @@ export default function DreamPage() {
   async function generatePhoto(fileUrl: string) {
     await new Promise((resolve) => setTimeout(resolve, 200));
     setLoading(true);
+
     const res = await fetch("/generate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ imageUrl: fileUrl, theme, room }),
+      body: JSON.stringify(
+        {
+          imageUrl: fileUrl,
+          theme: translateTheme(theme),
+          room: translateRoom(room)
+        }),
     });
 
     let newPhoto = await res.json();
@@ -162,6 +168,34 @@ export default function DreamPage() {
                   <span className="block sm:inline">{error}</span>
                 </div>
               )}
+              <div className="flex space-x-2 justify-center gap-4 mb-7">
+                {originalPhoto && !loading && (
+                  <button
+                    onClick={() => {
+                      setOriginalPhoto(null);
+                      setRestoredImage(null);
+                      setRestoredLoaded(false);
+                      setError(null);
+                    }}
+                    className="bg-indigo-500 rounded-full text-white font-medium px-4 py-2 mt-8 hover:bg-indigo-500/80 transition"
+                  >
+                    أنشئ غرفة أخرى
+                  </button>
+                )}
+                {restoredLoaded && (
+                  <button
+                    onClick={() => {
+                      downloadPhoto(
+                        restoredImage!,
+                        appendNewToName(photoName!)
+                      );
+                    }}
+                    className="bg-gray-900 text-white rounded-full border font-medium px-4 py-2 mt-8 hover:bg-gray-700 transition"
+                  >
+                    تحميل
+                  </button>
+                )}
+              </div>
               {!originalPhoto && <UploadDropZone />}
               {originalPhoto && !restoredImage && (
                 <Image
@@ -201,34 +235,6 @@ export default function DreamPage() {
                   </div>
                 </div>
               )}
-              <div className="flex space-x-2 justify-center gap-4">
-                {originalPhoto && !loading && (
-                  <button
-                    onClick={() => {
-                      setOriginalPhoto(null);
-                      setRestoredImage(null);
-                      setRestoredLoaded(false);
-                      setError(null);
-                    }}
-                    className="bg-indigo-500 rounded-full text-white font-medium px-4 py-2 mt-8 hover:bg-indigo-500/80 transition"
-                  >
-                    أنشئ غرفة أخرى
-                  </button>
-                )}
-                {restoredLoaded && (
-                  <button
-                    onClick={() => {
-                      downloadPhoto(
-                        restoredImage!,
-                        appendNewToName(photoName!)
-                      );
-                    }}
-                    className="bg-white rounded-full text-black border font-medium px-4 py-2 mt-8 hover:bg-gray-100 transition"
-                  >
-                    تحميل
-                  </button>
-                )}
-              </div>
             </motion.div>
           </AnimatePresence>
         </ResizablePanel>
