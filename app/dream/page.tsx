@@ -60,7 +60,7 @@ export default function DreamPage() {
   const [restoredLoaded, setRestoredLoaded] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [photoName, setPhotoName] = useState<string | null>(null);
-  const [theme, setTheme] = useState<themeType>("حديثة");
+  const [theme, setTheme] = useState<themeType>("مغربي");
   const [room, setRoom] = useState<roomType>("غرفة المعيشة");
 
   const UploadDropZone = () => (
