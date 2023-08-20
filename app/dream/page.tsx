@@ -12,7 +12,14 @@ import ResizablePanel from "../../components/ResizablePanel";
 import appendNewToName from "../../utils/appendNewToName";
 import downloadPhoto from "../../utils/downloadPhoto";
 import DropDown from "../../components/DropDown";
-import { roomType, rooms, themeType, themes, translateRoom, translateTheme } from "../../utils/dropdownTypes";
+import {
+  roomType,
+  rooms,
+  themeType,
+  themes,
+  translateRoom,
+  translateTheme,
+} from "../../utils/dropdownTypes";
 import uploaderConfig from "../../config/uploader";
 
 // Configuration for the uploader
@@ -81,12 +88,11 @@ export default function DreamPage() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(
-        {
-          imageUrl: fileUrl,
-          theme: translateTheme(theme),
-          room: translateRoom(room)
-        }),
+      body: JSON.stringify({
+        imageUrl: fileUrl,
+        theme: translateTheme(theme),
+        room: translateRoom(room),
+      }),
     });
 
     let newPhoto = await res.json();
@@ -105,8 +111,9 @@ export default function DreamPage() {
       <Header />
       <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 mt-12 sm:mb-0 mb-8">
         <h1 className="mx-auto max-w-4xl font-display text-4xl font-bold tracking-normal text-slate-700 sm:text-6xl mb-5">
-          صمم <span className="text-indigo-600">غرفة</span> أحلامك
+         قم بإعادة تصميم <span className="text-indigo-600"> غرفتك</span>
         </h1>
+
         <ResizablePanel>
           <AnimatePresence mode="wait">
             <motion.div className="flex justify-between items-center w-full flex-col mt-4">
@@ -121,7 +128,7 @@ export default function DreamPage() {
                         alt="1 icon"
                         className="ml-2"
                       />
-                      <p className="text-left font-medium">اختر شكل غرفتك</p>
+                      <p className="text-left font-medium text-xl">اختر شكل الغرفة المطلوبة.</p>
                     </div>
                     <DropDown
                       theme={theme}
@@ -140,13 +147,26 @@ export default function DreamPage() {
                         alt="2 icon"
                         className="ml-2"
                       />
-                      <p className="text-left font-medium">اختر نوع غرفتك</p>
+                      <p className="text-left font-medium text-xl">اختر نوع الغرفة المطلوبة.</p>
                     </div>
                     <DropDown
                       theme={room}
                       setTheme={(newRoom) => setRoom(newRoom as typeof room)}
                       themes={rooms}
                     />
+                  </div>
+                  <div className="mt-4 w-full max-w-sm">
+                    <div className="flex mt-6 w-96 items-center gap-2">
+                      <Image
+                        src="/number-3.svg"
+                        width={30}
+                        height={30}
+                        alt="3 icon"
+                      />
+                      <p className="text-left font-medium text-xl">
+                        قم بتحميل صورة الغرفة الحالية.
+                      </p>
+                    </div>
                   </div>
                 </>
               )}

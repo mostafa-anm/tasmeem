@@ -12,9 +12,9 @@ export interface SiteConfig {
 }
 
 export const siteConfig: SiteConfig = {
-  siteName: "بيت الأحلام",
+  siteName: "تصميم",
   title: "تصميم غرفة باستخدام الذكاء الاصطناعي",
-  description: "أنشئ غرفة أحلامك في ثوانٍ.",
+  description: "صمم غرفة أحلامك في ثوانٍ.",
   socialLinks: {
     twitter: "https://twitter.com/your-twitter",
     youtube: "https://youtube.com/your-youtube",

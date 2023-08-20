@@ -15,24 +15,23 @@ export default function HomePage() {
             <SquigglyLines />
             <span className="relative">الذكاء الاصطناعي</span>
           </span>{" "}
-          <span>للجميع...</span>
+          <span>في ثوانٍ...</span>
         </h1>
-        <h2 className="mx-auto mt-12 max-w-xl text-lg sm:text-gray-600 text-gray-700 leading-7">
-          التقط صورة لغرفتك وانظر كيف تبدو بمختلف الأشكال مجانًا - قم بإعادة
-          تصميم غرفتك اليوم.
-        </h2>
         <Link
-          className="bg-indigo-600 rounded-xl text-white font-medium px-4 py-3 sm:mt-10 mt-8 hover:bg-indigo-500 transition"
+          className="bg-indigo-600 rounded-2xl text-2xl text-white font-medium px-4 py-3 sm:mt-10 mt-8 hover:bg-indigo-500 transition"
           href="/dream"
         >
-          أنشئ غرفة أحلامك
+          ابدأ التصميم الآن
         </Link>
+        <h2 className="mx-auto mt-12 font-medium max-w-xl text-2xl sm:text-gray-600 text-gray-700 leading-7">
+          التقط صورة لغرفتك وانظر كيف تبدو بمختلف الأشكال <strong>مجانًا</strong>.
+        </h2>
         <div className="flex justify-between items-center w-full flex-col sm:mt-10 mt-6">
           <div className="flex flex-col space-y-10 mt-4 mb-16">
             <div className="flex sm:space-x-8 sm:flex-row flex-col gap-4">
               <div>
-                <h3 className="mb-1 font-medium text-lg text-indigo-900">
-                  الغرفة الأصلية
+                <h3 className="mb-2 font-medium text-2xl text-indigo-900">
+                الغرفة قبل إعادة التصميم
                 </h3>
                 <Image
                   alt="Original photo of a room with roomGPT.io"
@@ -43,8 +42,8 @@ export default function HomePage() {
                 />
               </div>
               <div className="sm:mt-0 mt-8">
-                <h3 className="mb-1 font-medium text-lg text-indigo-900">
-                  الغرفة التي تم أنشاؤها
+                <h3 className="mb-2 font-medium text-2xl text-indigo-900">
+                 الغرفة بعد إعادة التصميم 
                 </h3>
                 <Image
                   alt="Generated photo of a room with roomGPT.io"
