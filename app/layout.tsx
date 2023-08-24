@@ -2,6 +2,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { Metadata } from "next";
 import "../styles/globals.css";
 import siteConfig from "../config/site";
+import Script from "next/script";
 
 let title = siteConfig.title;
 let description = siteConfig.description;
@@ -38,6 +39,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ar">
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-VD2QLWWE60" />
+      <Script id="google-analytics">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+ 
+          gtag('config', 'G-VD2QLWWE60');
+        `}
+      </Script>
       <body>
         {children}
         <Analytics />
