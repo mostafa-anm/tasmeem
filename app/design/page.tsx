@@ -53,14 +53,14 @@ const options = {
   },
 };
 
-export default function DreamPage() {
+export default function DesignPage() {
   const [originalPhoto, setOriginalPhoto] = useState<string | null>(null);
   const [restoredImage, setRestoredImage] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [restoredLoaded, setRestoredLoaded] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [photoName, setPhotoName] = useState<string | null>(null);
-  const [theme, setTheme] = useState<themeType>("مغربي");
+  const [theme, setTheme] = useState<themeType>("حديث");
   const [room, setRoom] = useState<roomType>("غرفة المعيشة");
 
   const UploadDropZone = () => (

@@ -3,38 +3,25 @@ export type themeType =
   | "بسيط"
   | "شيك"
   | "هندي"
-  | "مغربي"
   | "ياباني"
-  | "بوهيمي"
   | "اسكندنافي"
   | "فرنسي"
-  | "صناعي"
   | "مزرعة"
   | "ساحلي"
   | "ريفي"
-  | "استوائي"
-  | "متألق"
-  | "تقليدي"
-  | "انتقالي";
+  | "استوائي";
 
 export const themes: themeType[] = [
   "حديث",
   "بسيط",
   "شيك",
   "هندي",
-  "مغربي",
   "ياباني",
-  "بوهيمي",
   "اسكندنافي",
   "فرنسي",
-  "صناعي",
   "مزرعة",
   "ساحلي",
-  "ريفي",
   "استوائي",
-  "متألق",
-  "تقليدي",
-  "انتقالي",
 ];
 
 export type roomType =
@@ -64,12 +51,8 @@ export const translateTheme = (theme: themeType) => {
       return "Tropical";
     case "هندي":
       return "Indian";
-    case "مغربي":
-      return "Moroccan";
     case "ياباني":
       return "Japanese";
-    case "بوهيمي":
-      return "Bohemian";
     case "اسكندنافي":
       return "Scandinavian";
     case "مزرعة":
@@ -80,14 +63,8 @@ export const translateTheme = (theme: themeType) => {
       return "Rustic";
     case "فرنسي":
       return "French Country";
-    case "متألق":
-      return "Glam";
     case "شيك":
       return "Shabby Chic";
-    case "تقليدي":
-      return "Traditional";
-    case "انتقالي":
-      return "Transitional";
   }
 };
 
