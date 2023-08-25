@@ -2,7 +2,9 @@ import { Analytics } from "@vercel/analytics/react";
 import { Metadata } from "next";
 import "../styles/globals.css";
 import siteConfig from "../config/site";
-import Script from "next/script";
+import Script from 'next/script';
+
+const GTM_ID = 'GTM-WLM9PX8H';
 
 let title = siteConfig.title;
 let description = siteConfig.description;
@@ -39,19 +41,25 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ar">
-      <Script src="https://www.googletagmanager.com/gtag/js?id=G-VD2QLWWE60" />
-      <Script id="google-analytics">
+    {/* https://www.rodyvansambeek.com/blog/easiest-ga4-integration-nextjs-13-gtm-guide */}
+    <Script id="google-tag-manager" strategy="afterInteractive">
         {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
- 
-          gtag('config', 'G-VD2QLWWE60');
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','${GTM_ID}');
         `}
-      </Script>
+    </Script>
       <body>
         {children}
         <Analytics />
+        {/* In the case where JavaScript is disabled in the user's browser */}
+        <noscript
+            dangerouslySetInnerHTML={{
+            __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=${GTM_ID}" height="0" width="0" style="display: none; visibility: hidden;"></iframe>`,
+            }}
+        />
       </body>
     </html>
   );
