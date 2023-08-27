@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+SiteMap: https://www.tasmeem.app/sitemap.xml
