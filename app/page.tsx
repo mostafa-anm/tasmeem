@@ -20,6 +20,7 @@ export default function HomePage() {
         <Link
           className="bg-indigo-600 rounded-2xl text-2xl text-white font-medium px-4 py-3 sm:mt-10 mt-8 hover:bg-indigo-500 transition"
           href="/design"
+          data-gtm="home-cta"
         >
           ابدأ التصميم الآن
         </Link>
